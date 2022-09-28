@@ -41,6 +41,7 @@ async function login(req: Request, res: Response) {
 
 const authController = {
   signup,
+  login,
 };
 
 export default authController;
