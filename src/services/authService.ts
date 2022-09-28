@@ -27,8 +27,17 @@ async function verifyEmailExists(email: string, action: string) {
   return user;
 }
 
+async function encryptPassword(password: string) {
+  const salt = 10;
+
+  const hashedPassword = await bcrypt.hash(password, salt);
+
+  return hashedPassword;
+}
+
 const authService = {
   verifyEmailExists,
+  encryptPassword,
 };
 
 export default authService;
