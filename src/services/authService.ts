@@ -1,6 +1,8 @@
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 
+import authRepository from '../repositories/authRepository';
+
 async function verifyEmailExists(email: string, action: string) {
   const user = await authRepository.getUserByEmail(email);
 
