@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { Signup } from '../types/userInterfaces';
+import { Signin, Signup } from '../types/userInterfaces';
 
 import authService from '../services/authService';
 
@@ -22,6 +22,17 @@ async function signup(req: Request, res: Response) {
   await authService.createUser(user);
 
   res.status(201).send('User created');
+}
+
+async function login(req: Request, res: Response) {
+  // TODO login
+  const { email, password } = req.body as Signin;
+  const action: string = 'login';
+  const JWT_KEY = process.env.JWT_SECRET_KEY as string;
+
+  const user = await authService.verifyEmailExists(email, action);
+  await authService.comparePassword(password, user?.password);
+  const token = await authService.generateToken(user?.id, JWT_KEY);
 }
 
 const authController = {

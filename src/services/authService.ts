@@ -40,10 +40,22 @@ async function createUser(user: Signup) {
   await authRepository.createUser(user);
 }
 
+async function comparePassword(password: string, hashedPassword: string) {
+  const isMatch = await bcrypt.compare(password, hashedPassword);
+
+  if (!isMatch) {
+    throw {
+      type: 'bad_request',
+      message: 'User or password incorrect',
+    };
+  }
+}
+
 const authService = {
   verifyEmailExists,
   encryptPassword,
   createUser,
+  comparePassword,
 };
 
 export default authService;
