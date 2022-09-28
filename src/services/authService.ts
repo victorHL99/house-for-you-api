@@ -2,6 +2,7 @@ import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 
 import authRepository from '../repositories/authRepository';
+import { Signup } from '../types/userInterfaces';
 
 async function verifyEmailExists(email: string, action: string) {
   const user = await authRepository.getUserByEmail(email);
@@ -35,9 +36,14 @@ async function encryptPassword(password: string) {
   return hashedPassword;
 }
 
+async function createUser(user: Signup) {
+  await authRepository.createUser(user);
+}
+
 const authService = {
   verifyEmailExists,
   encryptPassword,
+  createUser,
 };
 
 export default authService;
