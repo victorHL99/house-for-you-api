@@ -20,15 +20,23 @@ async function createUser(user: Signup) {
 // use upsert for update or create
 async function updateToken(id: number, token: string) {
   await client.session.upsert({
-    where: { some: { id } },
-    update: { token },
-    create: { token, userId: id },
+    where: {
+      userId: id,
+    },
+    update: {
+      token,
+    },
+    create: {
+      token,
+      userId: id,
+    },
   });
-
+}
 
 const authRepository = {
   getUserByEmail,
   createUser,
+  updateToken,
 };
 
 export default authRepository;

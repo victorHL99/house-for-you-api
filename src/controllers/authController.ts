@@ -25,7 +25,6 @@ async function signup(req: Request, res: Response) {
 }
 
 async function login(req: Request, res: Response) {
-  // TODO login
   const { email, password } = req.body as Signin;
   const action: string = 'login';
   const JWT_KEY = process.env.JWT_SECRET_KEY as string;
@@ -34,6 +33,10 @@ async function login(req: Request, res: Response) {
   await authService.comparePassword(password, user?.password);
   const token = await authService.generateToken(user?.email, JWT_KEY);
   await authService.updateToken(user?.id, token);
+
+  res.locals.token = token;
+
+  res.status(200).send({ message: 'User logged in', token });
 }
 
 const authController = {
