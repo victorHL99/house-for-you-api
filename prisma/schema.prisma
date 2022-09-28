@@ -26,10 +26,11 @@ model User {
 
 model Session {
   id        Int      @id @default(autoincrement())
-  userId    Int
+  userId    Int 
   token     String   @unique
   createdAt DateTime @default(now())
 
+  @@unique([userId, token])  
   user User @relation(fields: [userId], references: [id])
 
   @@map("sessions")
