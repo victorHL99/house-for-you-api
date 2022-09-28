@@ -51,11 +51,23 @@ async function comparePassword(password: string, hashedPassword: string) {
   }
 }
 
+async function generateToken(email: string, JWT_KEY: string) {
+  const token = jwt.sign({ email }, JWT_KEY, { expiresIn: '1h' });
+
+  return token;
+}
+
+async function updateToken(id: number, token: string) {
+  await authRepository.updateToken(id, token);
+}
+
 const authService = {
   verifyEmailExists,
   encryptPassword,
   createUser,
   comparePassword,
+  generateToken,
+  updateToken,
 };
 
 export default authService;

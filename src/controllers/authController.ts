@@ -32,7 +32,8 @@ async function login(req: Request, res: Response) {
 
   const user = await authService.verifyEmailExists(email, action);
   await authService.comparePassword(password, user?.password);
-  const token = await authService.generateToken(user?.id, JWT_KEY);
+  const token = await authService.generateToken(user?.email, JWT_KEY);
+  await authService.updateToken(user?.id, token);
 }
 
 const authController = {
