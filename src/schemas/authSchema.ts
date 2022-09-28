@@ -9,6 +9,8 @@ const signupSchema = Joi.object<Signup>({
   profile_image: Joi.string().required(),
 });
 
-const authSchema = {};
+const authSchema = {
+  signupSchema,
+};
 
 export default authSchema;
