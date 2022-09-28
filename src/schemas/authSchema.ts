@@ -6,7 +6,7 @@ const signupSchema = Joi.object<Signup>({
   last_name: Joi.string().required(),
   email: Joi.string().email().required(),
   password: Joi.string().required(),
-  profile_image: Joi.string().required(),
+  profile_image: Joi.string().required().uri(),
 });
 
 const signinSchema = Joi.object<Signin>({
