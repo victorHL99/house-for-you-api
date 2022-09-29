@@ -11,15 +11,16 @@ datasource db {
 }
 
 model User {
-  id                 Int       @id @default(autoincrement())
+  id                 Int            @id @default(autoincrement())
   name               String
   last_name          String
-  email              String    @unique
+  email              String         @unique
   password           String
   profile_image      String?
-  permission_granted Boolean   @default(false)
-  createdAt          DateTime  @default(now())
+  permission_granted Boolean        @default(false)
+  createdAt          DateTime       @default(now())
   Session            Session[]
+  Announcement       Announcement[]
 
   @@map("users")
 }
@@ -33,4 +34,34 @@ model Session {
 
   @@unique([userId, token])
   @@map("sessions")
+}
+
+model Announcement {
+  id           Int      @id @default(autoincrement())
+  userId       Int
+  value        Float
+  number_house Int      @unique
+  description  String
+  area         Float
+  bedrooms     Int
+  garage       Int
+  bathrooms    Int
+  phone_number String
+  createdAt    DateTime @default(now())
+
+  user    User      @relation(fields: [userId], references: [id])
+  Picture Picture[]
+
+  @@map("announcements")
+}
+
+model Picture {
+  id             Int      @id @default(autoincrement())
+  announcementId Int
+  photos         String
+  createdAt      DateTime @default(now())
+
+  announcement Announcement @relation(fields: [announcementId], references: [id])
+
+  @@map("pictures")
 }
