@@ -1,4 +1,5 @@
 import jwt from 'jsonwebtoken';
+import announcementRepository from '../repositories/announcementRepository';
 
 async function decryptToken(token: string) {
   const decoded: any = jwt.verify(token, process.env.JWT_SECRET_KEY);

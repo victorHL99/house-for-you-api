@@ -18,7 +18,7 @@ async function createAnnouncement(req: Request, res: Response) {
 
   // get userId from token
   const email = await announcementService.decryptToken(token);
-  console.log(email);
+  const userId = await announcementService.getUserId(email);
 }
 const announcementController = {
   createAnnouncement,
