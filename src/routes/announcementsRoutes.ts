@@ -2,6 +2,7 @@ import { Router } from 'express';
 import validateSchema from '../middlewares/validateSchema';
 import validateToken from '../middlewares/validateToken';
 import announcementSchema from '../schemas/announcementSchema';
+import announcementController from '../controllers/announcementController';
 
 const announcementsRouter = Router();
 
