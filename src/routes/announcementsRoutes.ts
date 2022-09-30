@@ -9,7 +9,7 @@ const announcementsRouter = Router();
 announcementsRouter.post(
   '/announcements',
   validateToken,
-  // validateSchema(announcementSchema.createAnnouncementSchema),
+  validateSchema(announcementSchema.createAnnouncementSchema),
   announcementController.createAnnouncement,
 );
 export default announcementsRouter;
