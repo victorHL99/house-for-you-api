@@ -1,7 +1,7 @@
 import jwt from 'jsonwebtoken';
 import { Request, Response, NextFunction } from 'express';
 
-export default async function tokenValidate(
+export default async function validateToken(
   req: Request,
   res: Response,
   next: NextFunction,
