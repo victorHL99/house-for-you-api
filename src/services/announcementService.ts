@@ -18,10 +18,17 @@ async function createAnnouncement(announcement: CreateAnnouncement) {
   await announcementRepository.createAnnouncement(announcement);
 }
 
+async function getAllAnnouncements() {
+  const announcements = await announcementRepository.getAllAnnouncements();
+
+  return announcements;
+}
+
 const announcementService = {
   decryptToken,
   getUserId,
   createAnnouncement,
+  getAllAnnouncements,
 };
 
 export default announcementService;

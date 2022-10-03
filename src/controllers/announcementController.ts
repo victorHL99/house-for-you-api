@@ -39,8 +39,15 @@ async function createAnnouncement(req: Request, res: Response) {
 
   res.status(201).json({ message: 'Announcement created' });
 }
+
+async function getAllAnnouncements(req: Request, res: Response) {
+  const announcements = await announcementService.getAllAnnouncements();
+
+  res.status(200).json(announcements);
+}
 const announcementController = {
   createAnnouncement,
+  getAllAnnouncements,
 };
 
 export default announcementController;

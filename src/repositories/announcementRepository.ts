@@ -16,9 +16,17 @@ async function createAnnouncement(announcement: CreateAnnouncement) {
     data: announcement,
   });
 }
+
+async function getAllAnnouncements() {
+  const announcements = await client.announcement.findMany();
+
+  return announcements;
+}
+
 const announcementRepository = {
   getUserByEmail,
   createAnnouncement,
+  getAllAnnouncements,
 };
 
 export default announcementRepository;
