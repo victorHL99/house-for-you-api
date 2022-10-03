@@ -15,6 +15,6 @@ announcementsRouter.post(
 announcementsRouter.get(
   '/announcements',
   validateToken,
-  announcementController.getAnnouncements,
+  announcementController.getAllAnnouncements,
 );
 export default announcementsRouter;
