@@ -12,9 +12,17 @@ announcementsRouter.post(
   validateSchema(announcementSchema.createAnnouncementSchema),
   announcementController.createAnnouncement,
 );
+
 announcementsRouter.get(
   '/announcements',
   validateToken,
   announcementController.getAllAnnouncements,
 );
+
+announcementsRouter.get(
+  '/announcements/:id',
+  validateToken,
+  announcementController.getAnnouncementById,
+);
+
 export default announcementsRouter;

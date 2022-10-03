@@ -24,11 +24,18 @@ async function getAllAnnouncements() {
   return announcements;
 }
 
+async function getAnnouncementById(id: number) {
+  const announcement = await announcementRepository.getAnnouncementById(id);
+
+  return announcement;
+}
+
 const announcementService = {
   decryptToken,
   getUserId,
   createAnnouncement,
   getAllAnnouncements,
+  getAnnouncementById,
 };
 
 export default announcementService;

@@ -45,9 +45,19 @@ async function getAllAnnouncements(req: Request, res: Response) {
 
   res.status(200).json(announcements);
 }
+
+async function getAnnouncementById(req: Request, res: Response) {
+  const ID = parseInt(req.params.id);
+
+  const announcement = await announcementService.getAnnouncementById(ID);
+
+  res.status(200).json(announcement);
+}
+
 const announcementController = {
   createAnnouncement,
   getAllAnnouncements,
+  getAnnouncementById,
 };
 
 export default announcementController;

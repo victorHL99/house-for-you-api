@@ -23,10 +23,21 @@ async function getAllAnnouncements() {
   return announcements;
 }
 
+async function getAnnouncementById(id: number) {
+  const announcement = await client.announcement.findFirst({
+    where: {
+      id,
+    },
+  });
+
+  return announcement;
+}
+
 const announcementRepository = {
   getUserByEmail,
   createAnnouncement,
   getAllAnnouncements,
+  getAnnouncementById,
 };
 
 export default announcementRepository;
