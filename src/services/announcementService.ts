@@ -27,6 +27,13 @@ async function getAllAnnouncements() {
 async function getAnnouncementById(id: number) {
   const announcement = await announcementRepository.getAnnouncementById(id);
 
+  if (!announcement) {
+    throw {
+      type: 'not_found',
+      message: 'Announcement not found',
+    };
+  }
+
   return announcement;
 }
 
