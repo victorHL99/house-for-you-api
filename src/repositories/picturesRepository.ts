@@ -27,10 +27,21 @@ async function createPicture(picture: CreatePicture) {
   });
 }
 
+async function getPictureByAnnoucementId(id: number) {
+  const pictures = await client.picture.findMany({
+    where: {
+      announcementId: id,
+    },
+  });
+
+  return pictures;
+}
+
 const picturesRepository = {
   getUserByEmail,
   getAnnouncementById,
   createPicture,
+  getPictureByAnnoucementId,
 };
 
 export default picturesRepository;
