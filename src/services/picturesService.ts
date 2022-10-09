@@ -23,10 +23,17 @@ async function createPicture(picture: CreatePicture) {
   await picturesRepository.createPicture(picture);
 }
 
+async function getPictureByAnnoucementId(id: number) {
+  const pictures = await picturesRepository.getPictureByAnnoucementId(id);
+
+  return pictures;
+}
+
 const picturesService = {
   getUserId,
   verifyUserId,
   createPicture,
+  getPictureByAnnoucementId,
 };
 
 export default picturesService;
