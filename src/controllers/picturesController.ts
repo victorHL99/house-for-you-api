@@ -27,8 +27,18 @@ async function createPictures(req: Request, res: Response) {
   res.sendStatus(201);
 }
 
+async function getPicturesByAnnoucementId(req: Request, res: Response) {
+  const { id } = req.params;
+
+  const pictures = await picturesService.getPictureByAnnoucementId(Number(id));
+  console.log(pictures);
+
+  res.send(pictures);
+}
+
 const picturesController = {
   createPictures,
+  getPicturesByAnnoucementId,
 };
 
 export default picturesController;
