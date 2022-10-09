@@ -13,4 +13,10 @@ picturesRouter.post(
   picturesController.createPictures,
 );
 
+picturesRouter.get(
+  '/:id',
+  validateToken,
+  picturesController.getPicturesByAnnoucementId,
+);
+
 export default picturesRouter;
