@@ -64,5 +64,6 @@ model Picture {
 
   announcement Announcement @relation(fields: [announcementId], references: [id])
 
+  @@unique([announcementId, photos])
   @@map("pictures")
 }
